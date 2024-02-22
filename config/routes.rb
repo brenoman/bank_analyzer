@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   get '/merchant/:id', to: 'home#merchant', as: 'merchant'
   get '/user/:id', to: 'home#user', as: 'user'
   get '/device/:id', to: 'home#device', as: 'device'
-  post '/transactions/predict', to: 'transactions#predict'
+  post '/ml/transactions/predict', to: 'transactions#predict'
+  post '/um/transactions/predict', to: 'prediction#predict'
 end
