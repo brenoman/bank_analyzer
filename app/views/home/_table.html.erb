@@ -1,0 +1,32 @@
+<% if @filtered_data.any? %>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Transaction ID</th>
+        <th>Merchant ID</th>
+        <th>User ID</th>
+        <th>Card Number</th>
+        <th>Transaction Date</th>
+        <th>Transaction Amount</th>
+        <th>Device ID</th>
+        <th>Chargeback</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @filtered_data.each do |row| %>
+        <tr>
+          <td><%= row[:transaction_id] %></td>
+          <td><%= link_to row[:merchant_id].to_s, merchant_path(row[:merchant_id]) %></td>
+          <td><%= link_to row[:user_id].to_s, user_path(row[:user_id]) %></td>
+          <td><%= row[:card_number] %></td>
+          <td><%= row[:transaction_date] %></td>
+          <td><%= row[:transaction_amount] %></td>
+          <td><% if !row[:device_id].nil? %><%= link_to row[:device_id].to_s, device_path(row[:device_id]) %><% end %></td>
+          <td><%= row[:has_cbk]%></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No transactions found for the specified merchant ID.</p>
+<% end %>
