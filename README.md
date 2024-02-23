@@ -85,3 +85,56 @@ json
 
 ## Note
 This is an API-focused application, emphasizing JSON request/response interactions for model interactions and database operations.
+
+## Addendum
+During my early stage of investigation, I developed some queries that helped me to make some inferences... they are here:
+
+
+    Devices with most chargebacks:
+        device_chargeback_counts = Transaction.where(has_cbk: true)
+                                              .group(:device_id)
+                                              .order('count_id DESC')
+                                              .count('id')
+
+        now showing to the total of transactions
+        # Find devices with at least one chargeback, count chargebacks and total transactions
+        device_stats = Device.joins(:transactions)
+                             .select('devices.id, COUNT(transactions.id) AS total_transactions,
+                                      SUM(CASE WHEN transactions.has_cbk THEN 1 ELSE 0 END) AS chargebacks_count')
+                             .group('devices.id')
+                             .having('SUM(CASE WHEN transactions.has_cbk THEN 1 ELSE 0 END) > 0')
+                             .order('total_transactions DESC')
+        device_stats_array = device_stats.map do |device|
+          {
+            device_id: device.id,
+            total_transactions: device.total_transactions,
+            chargebacks_count: device.chargebacks_count
+          }
+        end
+        device_stats_array.each do |device_stat|
+          puts "Device ID: #{device_stat[:device_id]}, Total Transactions: #{device_stat[:total_transactions]}, Chargebacks: #{device_stat[:chargebacks_count]}"
+        end
+        
+Merchants with most transactions
+    merchant_counts_by_device = Transaction.group(:merchant_id).count
+    sorted_merchant_counts = merchant_counts_by_device.sort_by { |_merchant_id, count| -count }
+
+
+Merchants with mos number of chargebacks and total of transactions
+    merchant_stats = Merchant.joins(:transactions)
+                             .select('merchants.id, COUNT(transactions.id) AS total_transactions,
+                                      SUM(CASE WHEN transactions.has_cbk THEN 1 ELSE 0 END) AS chargebacks_count')
+                             .group('merchants.id')
+                             .having('SUM(CASE WHEN transactions.has_cbk THEN 1 ELSE 0 END) > 0')
+                             .order('total_transactions DESC')
+    merchant_stats_array = merchant_stats.map do |merchant|
+      {
+        merchant_id: merchant.id,
+        total_transactions: merchant.total_transactions,
+        chargebacks_count: merchant.chargebacks_count
+      }
+    end
+
+    merchant_stats_array.each do |merchant_stat|
+      puts "Merchant ID: #{merchant_stat[:merchant_id]}, Total Transactions: #{merchant_stat[:total_transactions]}, Chargebacks: #{merchant_stat[:chargebacks_count]}"
+    end
