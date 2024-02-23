@@ -11,8 +11,8 @@ def make_prediction_request(url, data, actual, model_name, results):
         if response.status_code == 200:
             if model_name == "CB":
                 fraud_probability = float(response.text)  # Assuming the response is the fraud probability as a float
-                recommendation = 'deny' if fraud_probability > 0.5 else 'approve'
-                prediction_match = (fraud_probability > 0.5 and actual == 'deny') or (fraud_probability <= 0.5 and actual == 'approve')
+                recommendation = 'deny' if fraud_probability > 0.7 else 'approve'
+                prediction_match = (fraud_probability > 0.7 and actual == 'deny') or (fraud_probability <= 0.7 and actual == 'approve')
                 
                 # Logging with indication of fraud probability
                 print(f"{model_name} Prediction for Transaction ID {data['transaction_id']}: {recommendation} (Probability: {fraud_probability}), Actual: {actual}") 
