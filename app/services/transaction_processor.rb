@@ -26,16 +26,16 @@ class TransactionProcessor
     user = User.verify_or_create_by_id(@params[:user_id])
     merchant = Merchant.verify_or_create_by_id(@params[:merchant_id])
     cardnumber = CardNumber.find_or_create_by_number_and_user(@params[:card_number], @user)
-    device = Device.verify_or_create_by_id(@params[:device_id])
+    device = @params[:device_id].present? ? Device.verify_or_create_by_id(@params[:device_id]) : nil
 
     Transaction.find_or_initialize_by(id: @params[:transaction_id]) do |t|
-      t.assign_attributes(transaction_attributes(user, merchant))
+      t.assign_attributes(transaction_attributes(user, merchant, cardnumber, device))
       t.save unless t.persisted?
     end
   end
 
   def transaction_attributes(user, merchant, cardnumber, device)
-    {
+    attributes = {
       user: user,
       merchant: merchant,
       card_number: cardnumber,
@@ -43,5 +43,7 @@ class TransactionProcessor
       transaction_amount: @params[:transaction_amount],
       device: device
     }
+    attributes[:device] = device unless device.nil?
+    attributes
   end
 end

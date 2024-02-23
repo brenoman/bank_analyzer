@@ -3,7 +3,6 @@
 class TransactionDataPreprocessor
   def self.process(data)
     data_json = data.to_json
-    puts "chegou aqui #{data_json}"
 
     # Execute the Python script with Open3 to capture stdout, stderr, and process status safely
     require 'open3'
