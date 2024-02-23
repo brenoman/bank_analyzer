@@ -1,15 +1,18 @@
+# frozen_string_literal: true
+
 class FraudPredictionService
   def initialize(params)
     @params = params
   end
 
   def predict
-    {
+    prediction_checks = {
       cbk: User.find(@params['user_id']).has_cbk_transactions?,
       unusual_value: verify_value_pattern,
       rapid_transactions: User.find(@params['user_id']).has_recent_rapid_transaction?,
       suspicious_merchant: Merchant.find(@params['merchant_id']).all_transactions_fraudulent?
     }
+    prediction_checks.values.any? ? 'deny' : 'approve'
   end
 
   private

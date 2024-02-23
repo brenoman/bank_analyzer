@@ -75,7 +75,7 @@ with open(file_path, newline='') as csvfile:
         transactions_to_process.append((data, actual))
 
 # Process transactions with multiple threads
-with ThreadPoolExecutor(max_workers=30) as executor:
+with ThreadPoolExecutor(max_workers=100) as executor:
     executor.map(process_transactions, transactions_to_process)
 
 # Summary

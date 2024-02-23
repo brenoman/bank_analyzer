@@ -6,11 +6,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  root 'home#index'
-  get '/merchant/:id', to: 'home#merchant', as: 'merchant'
-  get '/user/:id', to: 'home#user', as: 'user'
-  get '/device/:id', to: 'home#device', as: 'device'
   post '/ml/transactions/predict', to: 'transactions#predict'
   post '/ml/transactions/predictcb', to: 'transactions#predictcb'
-  post '/um/transactions/predict', to: 'prediction#predict'
+  post '/um/transactions/predict', to: 'transactions#predictum'
 end

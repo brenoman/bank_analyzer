@@ -2,6 +2,11 @@
 
 class User < ApplicationRecord
   has_many :transactions
+  has_many :card_numbers
+
+  def self.verify_or_create_by_id(user_id)
+    find_or_create_by(id: user_id)
+  end
 
   def has_recent_rapid_transaction?
     last_transaction = transactions.order('transaction_date DESC').first
