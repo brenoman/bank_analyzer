@@ -10,4 +10,11 @@ class TransactionsController < ApplicationController
     processed_data = TransactionDataPreprocessor.process(transaction_data.to_json)
     render json: processed_data
   end
+
+  def predictcb
+    transaction_data = params.permit(:transaction_id, :has_cbk, :merchant_id, :user_id, :card_number,
+                                     :transaction_date, :transaction_amount, :device_id)
+    processed_data = TransactionDataPreprocessorCb.process(transaction_data.to_json)
+    render json: processed_data
+  end
 end

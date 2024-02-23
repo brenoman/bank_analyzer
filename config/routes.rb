@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   get '/user/:id', to: 'home#user', as: 'user'
   get '/device/:id', to: 'home#device', as: 'device'
   post '/ml/transactions/predict', to: 'transactions#predict'
+  post '/ml/transactions/predictcb', to: 'transactions#predictcb'
   post '/um/transactions/predict', to: 'prediction#predict'
 end
