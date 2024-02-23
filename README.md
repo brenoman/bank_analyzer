@@ -34,7 +34,7 @@ rake db:populate
     Train the second model (CatBoost) with:
         rake ml:traincb
 
-Note: The second model (CatBoost) provides predictions in the form of a percentage chance of the transaction being fraudulent.
+Note: The second model (CatBoost) provides predictions in the form of a percentage chance of the transaction being fraudulent (and the comparator considers >0.75).
 
 
 ## Making Predictions
