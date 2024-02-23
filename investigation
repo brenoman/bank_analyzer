@@ -1,0 +1,55 @@
+Using this csv with hypothetical transactional data, imagine that you are trying to understand if there is any kind of suspicious behavior.
+
+    1- Analyze the data provided and present your conclusions (consider that all transactions are made using a mobile device).
+    2- In addition to the spreadsheet data, what other data would you look at to try to find patterns of possible frauds?
+
+
+Conclusions:
+1- 
+Analyses:
+
+    Approximately 12.2% of the dataset transactions were marked as fraudulents, 87.8% being legitimate.
+    Statistics summary:
+        Mean: The mean value of a fraudulent transaction is approximately $1453.57
+        Standard deviation:  $1169.49.
+        25th percentile is $565.58, the 50th percentile (median) is $999.47, and the 75th percentile is $2140.68, indicating one broad window of fraudulent values transaction.
+
+    Merchants associated with fraud
+        Some merchants are more frequently associated with fraud. For instance, the merchant 17275 has the biggest number of fraudulent transactions (22), followed by the merchants 4705 (10), 1308 (15), 53041 (14) and 77130 (13). This pattern suggest that examine fraud indexes of merchants could be a viable approach to identify and mitigate frauds.
+        
+    Identify merchants with fraudulent transactions through multiple devices
+        Group fraudulent transactions for merchant_id and count the unique devices associated with these transactions. This will show us the merchants that have more fraudulent activity with different devices as origin.
+    
+    Analyze pattern for the identified merchants
+        Total number of fraudulent transactions for merchants;
+        The amount value distributionfor the fraudulent transactions for merchant;
+        
+        Merchants 91972 and 53041 stand out, having a history of fraudulent transactions with 8 and 6 unique devices respectively. This suggests that these merchants could be targeted or are vulnerable to fraud from different sources.
+        
+    Investigation between merchants and the use of the devices is about identifying the devices that have been utilized in fraudulent transactions through diverse merchants. This analysis could reveal fraud patterns based on the devices.
+    The device 101848 was involved in fraudulent transactions between 4 different merchants, indicating a significative coordinated fraud potential. Devices 547440 and 656429 were utilized with 3 different merchants, suggesting their involvement with fraud activities.
+    
+    Associated users with fraud
+        Identify users with fraudulent transactions through multiple merchants and devices is another step to understand and mitigate fraud. This patterns could indicate more sophisticated fraud schemes which require a more deep investigation.
+
+
+Inferências
+    Fraud between users: users with disputes probably wee victim of fraud or are they culprit.
+    Fraud between cards: cards with dispute, are probably compromised.
+    Device based fraud: Mutiple devices being used in fraudulent transactions between different merchants, suggesting that the device was stolen or compromised.
+    Fraud between merchants: some devices are involved in fraud between 8 different merchants, demonstrating a possible coordinated fraud activity.
+    Temporal pattern: Investigating date and hour of the transactions could reveal specific periods where the fraud is more likely to occur.
+    Reincidents: Devices used in fraud with multiple merchants suggest reincidents, that could be users or groups.
+    User behavior: Users with fraudulent transactions in different merchants could indicate a compromised account or coordinated fraud.
+    Transaction anomalies: The big window of fraudulent transactions amount, suggests that all transactions (small ones and big ones) could be considered suspicious.
+    Fraud between time: Analyse time trends could reveal increasing or decreasing patterns.
+    Speed between transactions: Sequence of transaction in short period of time, specially from new devices, could indicate fraud.
+    Machine learning: Advanced machine learning models could increase the detection of complex fraud patterns.
+    Payment anomalies: Unusual payment patterns, such as sudden value increase or frequency could be an red flag.
+
+    
+2-
+    Geographic information: data from where the transaction took place and analysis between the user address and the location of the transaction
+    Failed Authentications: I high number of login attempts preceding a transaction could suggest the account was compromised.
+    Changes in the speding pattern
+    Analysis of transaction between different merchant and devices linked to the same user could reveal a coordinated fraudulent scheme.

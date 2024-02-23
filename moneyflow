@@ -1,0 +1,30 @@
+Money Flow and Information Flow in the Acquirer Market
+
+Money Flow:
+When a consumer makes a purchase with a credit card at a merchant's store or website, the transaction initiates a fund transfer flow that moves from the card issuer's bank account to the merchant's bank account. The payment is first processed through a payment gateway (if online) or a point-of-sale (POS) system, which directs the transaction details to the acquirers for analysis and subsequent approval (or disapproval). Then, the acquirer sends the transaction to the credit card network (e.g., Visa, Mastercard) for authorization. Once approved, the issuer sends the authorization back, following the path: Credit Card Network -> Acquirer -> Gateway/POS -> Merchant. The funds are transferred from the issuer to the acquirer, minus the interchange fees. The acquirer then deposits the amount into the merchant's account, minus the merchant discount rate, which includes various transaction processing fees.
+
+Information Flow:
+The information flow involves the transmission of transaction details, authorization requests, and authorizations between the merchant, acquirer, card network, and issuer. This includes the credit card number, transaction amount, and merchant details for the purpose of authentication, fraud prevention, and fund transfer authorization. Security measures such as encryption and tokenization are used to protect the information during its transmission.
+
+Role of Big Players
+Merchant: Sells products and services and accepts credit card payments.
+
+Acquirer (Merchant's Bank): Facilitates credit card payment processing, including authorization, settlement, and fund transfer.
+
+Card Network: Operates the payment network (e.g., Visa, Mastercard) that connects acquirers and issuers, facilitating purchase authorization and transaction settlement.
+
+Issuer (Consumer's Bank): Issues payment cards and is responsible for authorizing and settling transactions.
+
+Difference Between Acquirer, Sub-acquirer, and Payment Gateway
+Acquirer: A financial institution that processes credit and debit card transactions on behalf of a merchant. The acquirer is responsible for receiving purchase authorization requests from merchants and obtaining authorization from card networks and issuers.
+
+Sub-acquirer: A third-party service provider that partners with an acquirer to offer payment processing services to merchants. They manage the merchant's transactions without the merchant having to have a direct relationship with an acquirer. They aggregate transactions from multiple merchants under their own merchant account.
+
+Payment Gateway: A service that authorizes and processes payments for online merchants, websites, and e-commerce platforms. It acts as an intermediary between the merchant's website and the acquirer, securely transmitting payment information to the acquirer for processing.
+
+Chargebacks, Cancellations, and Fraud
+Chargebacks occur when a cardholder disputes a transaction, and the funds from the transaction are transferred from the merchant to the cardholder's account. They can happen for various reasons, including unauthorized card use (fraud), dissatisfaction with a product/service, or processing errors.
+
+Cancellations are when a merchant reverses a transaction before it is finalized or marked for settlement. Unlike chargebacks, cancellations are initiated by the merchant, usually at the consumer's request, and do not involve a dispute process.
+
+Connection with Fraud: Chargebacks are closely linked to fraud in the acquiring world, as fraudulent transactions are a major reason for cardholders to initiate disputes. Merchants and acquirers invest in fraud detection and prevention mechanisms to reduce the risk of unauthorized transactions that could result in chargebacks.
